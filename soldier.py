@@ -1,4 +1,4 @@
-import  consts
+import consts
 soldier_image =
 tup_index_soldier = (0, 0)
 
