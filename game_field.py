@@ -13,5 +13,5 @@ def list_of_status(lst):
 
 
 list_of_status(lst)
-
+#mdkgvmfdm
 print(len(lst))
