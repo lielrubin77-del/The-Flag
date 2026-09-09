@@ -9,11 +9,12 @@ pygame.display.set_caption(consts.NAME_GAME)
 clock = pygame.time.Clock()
 
 player = pygame.image.load("soldier.png")
-player_rect_width = player.get_rect().width
-player_rect_hight = player.get_rect().height
+player_rect_width = player.get_rect().width#width big pic
+player_rect_hight = player.get_rect().height#hight big pic
 
-player_hight = consts.SOLDIER_ROWS *consts.CELL_SIZE
-player = pygame.transform.smoothscale(player, (player_hight, player_hight/player_rect_width*player_rect_hight))
+player_hight = consts.SOLDIER_ROWS *consts.CELL_SIZE# what hight needs to be
+
+player = pygame.transform.smoothscale(player, (player_hight, (player_hight/player_rect_width) *player_rect_hight))#
 x = consts.SOLDIER_START[0]
 y = consts.SOLDIER_START[1]
 
@@ -25,6 +26,16 @@ def random_bush():
         list.append((bush_y,bush_x))
     return list
 bush_list = random_bush()
+def put_flag():
+    flag = pygame.image.load("flag.png")
+    flag_rect_width = flag.get_rect().width
+    flag_rect_hight = flag.get_rect().height
+    yachas = flag_rect_hight/flag_rect_width
+    flag_hight = consts.FLAG_ROWS* consts.CELL_SIZE
+    flag = pygame.transform.smoothscale(flag, (flag_hight, flag_hight*yachas))
+
+    window.blit(flag, (300, 200))
+
 
 def draw_bush():
     for bush_place in bush_list:
@@ -40,6 +51,7 @@ def draw_bush():
 def draw():
     window.fill(consts.BACKGROUND_COLOR)
     draw_bush()
+    put_flag()
 
 
 
