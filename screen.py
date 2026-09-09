@@ -1,4 +1,6 @@
-from PIL import Image
+import time
+
+import soldier
 import pygame
 import random
 import consts
@@ -18,6 +20,7 @@ player = pygame.transform.smoothscale(player, (player_hight, (player_hight/playe
 x = consts.SOLDIER_START[0]
 y = consts.SOLDIER_START[1]
 
+font = pygame.font.Font(None, size=25)
 def random_bush():
     list = []
     for i in range(consts.BUSH_NUM):
@@ -34,7 +37,11 @@ def put_flag():
     flag_hight = consts.FLAG_ROWS* consts.CELL_SIZE
     flag = pygame.transform.smoothscale(flag, (flag_hight, flag_hight*yachas))
 
-    window.blit(flag, (300, 200))
+    flag_y = consts.WINDOW_HEIGHT - consts.FLAG_ROWS*consts.CELL_SIZE
+    flag_x = consts.WINDOW_WIDTH - consts.FLAG_COLS*consts.CELL_SIZE+20
+    #print(flag_y)
+
+    window.blit(flag, (flag_x, flag_y))
 
 
 def draw_bush():
@@ -46,7 +53,6 @@ def draw_bush():
         bush = pygame.transform.smoothscale(bush, (bush_hight, (bush_hight/bush_rect_width*bush_rect_hight)))
 
         window.blit(bush, (bush_place[0], bush_place[1]))
-
 
 def draw():
     window.fill(consts.BACKGROUND_COLOR)
@@ -60,28 +66,25 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
             exit()
-        # if event.type == pygame.KEYDOWN:
-        #     if event.key in (pygame.K_UP, pygame.K_w):
-        #         y += 20
-        #         print("o")
-        #     if event.key in (pygame.K_DOWN, pygame.K_s):
-        #         player.y += consts.CELL_SIZE
-        #     if event.key in (pygame.K_LEFT, pygame.K_a):
-        #         player.x -= consts.CELL_SIZE
-        #     if event.key in (pygame.K_RIGHT, pygame.K_d):
-        #         player.x += consts.CELL_SIZE
-    #window.blit(player, player_rect)
 
     keys = pygame.key.get_pressed()
     if keys[pygame.K_UP]:
-        y -= consts.CELL_SIZE
+        if y > 0:
+            y -= consts.CELL_SIZE
     if keys[pygame.K_DOWN]:
-        y += consts.CELL_SIZE
+        if y < consts.WINDOW_HEIGHT - consts.SOLDIER_ROWS*consts.CELL_SIZE:
+            y += consts.CELL_SIZE
     if keys[pygame.K_LEFT]:
-        x -= consts.CELL_SIZE
+        if x > 0:
+            x -= consts.CELL_SIZE
     if keys[pygame.K_RIGHT]:
-        x += consts.CELL_SIZE
-
+        if x < consts.WINDOW_WIDTH - consts.SOLDIER_COLS*consts.CELL_SIZE-53:
+            x += consts.CELL_SIZE
+    if keys[pygame.K_SPACE]:
+        window.fill('red')
+        print(0)
+        time.sleep(3)
+        #continue
 
     draw()
     window.blit(player, (x, y))
