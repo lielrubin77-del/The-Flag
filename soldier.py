@@ -1,15 +1,21 @@
 import consts
+from consts import SOLDIER_BODY_ROWS
 
-soldier_image =
-tup_index_soldier = (0, 0)
+# soldier_image =
+tup_index_soldier = (0, 50)
 
+
+# BOARD_ROWS = 25
+# BOARD_COLS = 50
+# SOLDIER_ROWS = 4
+# SOLDIER_COLS = 2
 
 def limits(top_left_square):
     y = top_left_square[0]
     x = top_left_square[1]
-    return ((y > 0 and y < consts.BOARD_ROWS - 4) and (
-                x > 0 and x < consts.BOARD_COLS - 2))
-
+    return ((y >= 0 and y < consts.BOARD_ROWS - consts.SOLDIER_ROWS) and (
+                x >= 0 and x < consts.BOARD_COLS - consts.SOLDIER_COLS))
+print(limits(tup_index_soldier))
 
 def index_legs(top_left_square):
     list = []
@@ -21,7 +27,7 @@ def index_legs(top_left_square):
         list.append(tup_left_leg)
         list.append(tup_right_leg)
     return list
-
+print(index_legs(tup_index_soldier))
 
 def index_body(top_left_square):
     list=[]
@@ -41,3 +47,4 @@ def index_body(top_left_square):
         list.append(tup5)
         list.append(tup6)
     return list
+print(index_body(tup_index_soldier))
