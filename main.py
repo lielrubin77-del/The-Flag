@@ -17,7 +17,7 @@ def is_soldier_on_mine(left_leg, right_leg):
     y_l = left_leg[1]
     x_r = right_leg[0]
     y_r = right_leg[1]
-    if (consts.lst[x_l][y_l] == "mine" or consts.lst[x_r][y_r] == "mine"):
+    if (game_field.lst[x_l][y_l] == "mine" or game_field.lst[x_r][y_r] == "mine"):
         return True
     return False
 
@@ -28,7 +28,7 @@ def is_soldier_on_flag(tup1, tup2, tup3):
     y2 = tup2[1]
     x3 = tup3[0]
     y3 = tup3[1]
-    if (consts.lst[x1][y1] == "flag" or consts.lst[x2][y2] == "flag" or
-            consts.lst[x3][y3] == "flag"):
+    if (game_field.lst[x1][y1] == "flag" or game_field.lst[x2][y2] == "flag" or
+            game_field.lst[x3][y3] == "flag"):
         return True
     return False
